@@ -2,6 +2,7 @@ function stateTransitions (nextOctave: number, nextNoteIndex: number) {
     serial.writeString("" + readPianoKeyboardInput())
     serial.writeLine("" + (notes_dictionary[readPianoKeyboardInput()]))
     if (nextOctave == 0) {
+        let midi_notes_octave0_dict: number[] = []
         if (nextNoteIndex == 1 || nextNoteIndex == 2) {
             serial.writeLine("G-String")
         } else if (nextNoteIndex == 3 || nextNoteIndex == 4 || nextNoteIndex == 5 || nextNoteIndex == 6 || nextNoteIndex == 7 || nextNoteIndex == 8 || nextNoteIndex == 9) {
@@ -11,6 +12,7 @@ function stateTransitions (nextOctave: number, nextNoteIndex: number) {
         } else {
             serial.writeLine("Invalid")
         }
+        midi.playTone(midi_notes_octave0_dict[nextNoteIndex], music.beat(BeatFraction.Double))
     } else if (nextOctave == 1) {
         if (nextNoteIndex == 1 || nextNoteIndex == 2 || nextNoteIndex == 3 || nextNoteIndex == 4) {
             serial.writeLine("A-String")
@@ -21,6 +23,7 @@ function stateTransitions (nextOctave: number, nextNoteIndex: number) {
         } else {
             serial.writeLine("Invalid")
         }
+        midi.playTone(midi_notes_octave1_dict[nextNoteIndex], music.beat(BeatFraction.Double))
     }
 }
 function readPianoKeyboardInput () {
@@ -35,6 +38,7 @@ let keyboard_input_decimal_representation = 0
 let LSB_0 = 0
 let LSB_1 = 0
 let LSB_2 = 0
+let midi_notes_octave1_dict: number[] = []
 let notes_dictionary: string[] = []
 let MSB = 0
 let current_state = 0
@@ -61,7 +65,7 @@ notes_dictionary = [
 "X",
 "X"
 ]
-let midi_notes_octave1_dict = [
+midi_notes_octave1_dict = [
 0,
 262,
 277,
@@ -75,9 +79,9 @@ let midi_notes_octave1_dict = [
 440,
 466,
 494,
-"0",
-"0",
-"0"
+0,
+0,
+0
 ]
 midi_notes_octave1_dict = [
 0,

@@ -33,11 +33,12 @@ LSB_1 = 0
 LSB_2 = 0
 notes_dictionary: List[str] = []
 MSB = 0
-octave_scale = 0
-staccato_legato_state = 0
-next_state = 0
 current_state = 0
+next_state = 0
+staccato_legato_state = 0
+octave_scale = 0
 MSB = 0
+_this = 0
 notes_dictionary = ["IDLE",
     "C",
     "C#",
@@ -54,7 +55,39 @@ notes_dictionary = ["IDLE",
     "X",
     "X",
     "X"]
+midi_notes_octave1_dict = [0,
+    262,
+    277,
+    294,
+    311,
+    330,
+    349,
+    370,
+    392,
+    415,
+    440,
+    466,
+    494,
+    "0",
+    "0",
+    "0"]
+midi_notes_octave1_dict = [0,
+    523,
+    554,
+    587,
+    622,
+    659,
+    698,
+    740,
+    196,
+    208,
+    220,
+    233,
+    247,
+    0,
+    0,
+    0]
 
 def on_forever():
-    stateTransitions(1, 1)
+    stateTransitions(1, readPianoKeyboardInput())
 basic.forever(on_forever)
