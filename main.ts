@@ -42,6 +42,7 @@ let next_state = 0
 let staccato_legato_state = 0
 let octave_scale = 0
 MSB = 0
+let _this = 0
 notes_dictionary = [
 "IDLE",
 "C",
@@ -60,23 +61,41 @@ notes_dictionary = [
 "X",
 "X"
 ]
-let midi_notes_dict = [
-"X",
-midi.frequencyToKey(262),
-midi.frequencyToKey(277),
-midi.frequencyToKey(294),
-midi.frequencyToKey(311),
-midi.frequencyToKey(330),
-midi.frequencyToKey(349),
-midi.frequencyToKey(370),
-midi.frequencyToKey(392),
-midi.frequencyToKey(415),
-midi.frequencyToKey(440),
-midi.frequencyToKey(466),
-midi.frequencyToKey(494),
-"X",
-"X",
-"X"
+let midi_notes_octave1_dict = [
+0,
+262,
+277,
+294,
+311,
+330,
+349,
+370,
+392,
+415,
+440,
+466,
+494,
+"0",
+"0",
+"0"
+]
+midi_notes_octave1_dict = [
+0,
+523,
+554,
+587,
+622,
+659,
+698,
+740,
+196,
+208,
+220,
+233,
+247,
+0,
+0,
+0
 ]
 basic.forever(function () {
     stateTransitions(1, readPianoKeyboardInput())
