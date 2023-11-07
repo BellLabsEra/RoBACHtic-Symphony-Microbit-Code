@@ -12,7 +12,7 @@ function stateTransitions (nextOctave: number, nextNoteIndex: number) {
         } else {
             serial.writeLine("Invalid")
         }
-        midi.playTone(midi_notes_octave0_dict[nextNoteIndex], music.beat(BeatFraction.Double))
+        music.play(music.tonePlayable(midi_notes_octave0_dict[nextNoteIndex], music.beat(BeatFraction.Double)), music.PlaybackMode.UntilDone)
     } else if (nextOctave == 1) {
         if (nextNoteIndex == 1 || nextNoteIndex == 2 || nextNoteIndex == 3 || nextNoteIndex == 4) {
             serial.writeLine("A-String")
@@ -23,7 +23,7 @@ function stateTransitions (nextOctave: number, nextNoteIndex: number) {
         } else {
             serial.writeLine("Invalid")
         }
-        midi.playTone(midi_notes_octave1_dict[nextNoteIndex], music.beat(BeatFraction.Double))
+        music.play(music.tonePlayable(midi_notes_octave1_dict[nextNoteIndex], music.beat(BeatFraction.Double)), music.PlaybackMode.UntilDone)
     }
 }
 function readPianoKeyboardInput () {
@@ -102,5 +102,5 @@ midi_notes_octave1_dict = [
 0
 ]
 basic.forever(function () {
-    stateTransitions(1, readPianoKeyboardInput())
+    stateTransitions(0, readPianoKeyboardInput())
 })
